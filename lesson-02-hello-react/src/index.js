@@ -13,3 +13,7 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// SPA - Single Page Application
+// https://taka
+// https://taka/kem-danh-rang
