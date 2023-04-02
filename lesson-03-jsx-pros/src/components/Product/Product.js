@@ -4,11 +4,11 @@ const Product = (props) => {
   console.log("Props of product component:", props);
 
   // Object Destructering
-  const { title, price, children } = props;
+  const { title, price, children, productImg } = props;
 
   return (
     <div className="product">
-      {children}
+      <img src={productImg} alt="" />
       <h6>{title}</h6>
       <p>Price: ${price}</p>
       {/* <button>Add to cart</button> */}
