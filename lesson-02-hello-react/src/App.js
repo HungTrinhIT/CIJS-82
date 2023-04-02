@@ -1,5 +1,6 @@
 import Product from "./Product";
 import Header from "./Header";
+import Footer from "./Footer";
 // Là 1 component => component-based
 // Là 1 component: Functional Component
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Product />
         <Product />
       </div>
+      <Footer />
     </div>
   );
 }
