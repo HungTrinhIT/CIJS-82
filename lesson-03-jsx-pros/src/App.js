@@ -9,7 +9,10 @@ const App = () => {
     <div>
       <Header cartAmount={100} username="Harry" />
       <main className="container">
-        <Product title="Iphone 14 Pro Max" price="1500" />
+        <Product title="Iphone 14 Pro Max" price="1500">
+          <span>Day la children</span>
+        </Product>
+        
         <Product title="Samsung Galaxy" price="2000" />
         <Product title="LG Galaxy" price="2000" />
         <Product title="Huawei Galaxy" price="2000" />
