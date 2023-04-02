@@ -1,37 +1,23 @@
 import "./App.css";
-
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 import Product from "./components/Product/Product";
 
 const App = () => {
-  const cartAmount = 100;
-
   // JSX: Javascript XML
   return (
-    <div className="container">
-      <header
-        style={{
-          display: "flex",
-          backgroundColor: "#ececec",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <h1>Shopping cart</h1>
-        <div>
-          {"Cart".toUpperCase()} {cartAmount}
-        </div>
-      </header>
-
-      <main>
+    <div>
+      <Header cartAmount={100} username="Harry" />
+      <main className="container">
         <Product title="Iphone 14 Pro Max" price="1500" />
         <Product title="Samsung Galaxy" price="2000" />
         <Product title="LG Galaxy" price="2000" />
         <Product title="Huawei Galaxy" price="2000" />
         <Product title="Oppo Galaxy" price="1500" />
         <Product title="Sony" price="3000" />
+        <Product />
       </main>
-
-      <footer>Footer</footer>
+      <Footer />
     </div>
   );
 };
