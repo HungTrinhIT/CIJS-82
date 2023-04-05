@@ -7,7 +7,12 @@ const Product = (props) => {
   const { title, price, children, productImg } = props;
 
   return (
-    <div className="product">
+    <div
+      className="product"
+      style={{
+        backgroundColor: "white",
+      }}
+    >
       <img src={productImg} alt="" />
       <h6>{title}</h6>
       <p>Price: ${price}</p>
@@ -16,6 +21,7 @@ const Product = (props) => {
         <span>Add to cart</span>
       </Button>
       <Button>View detail</Button>
+      <Button>Delete product</Button>
     </div>
   );
 };

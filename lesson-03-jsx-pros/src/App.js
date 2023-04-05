@@ -10,19 +10,31 @@ const App = () => {
     <div>
       <Header cartAmount={100} username="Harry" />
       <main className="container">
-        {/* <Product
+        <Product
           title="Iphone 14 Pro Max"
           price="1500"
           productImg="images/cat-1.png"
         />
 
-        <Product title="Samsung Galaxy" price="2000" />
-        <Product title="LG Galaxy" price="2000" />
-        <Product title="Huawei Galaxy" price="2000" />
-        <Product title="Oppo Galaxy" price="1500" />
-        <Product title="Sony" price="3000" />
-        <Product /> */}
-        <CategorySection />
+        <Product
+          title="Samsung Galaxy"
+          price="2000"
+          productImg="images/cat-1.png"
+        />
+        <Product title="LG Galaxy" price="2000" productImg="images/cat-1.png" />
+        <Product
+          title="Huawei Galaxy"
+          price="2000"
+          productImg="images/cat-1.png"
+        />
+        <Product
+          title="Oppo Galaxy"
+          price="1500"
+          productImg="images/cat-1.png"
+        />
+        <Product title="Sony" price="3000" productImg="images/cat-1.png" />
+        <Product />
+        {/* <CategorySection /> */}
       </main>
       <Footer />
     </div>
