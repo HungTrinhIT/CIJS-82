@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import TodoApp from "./TodoApp";
+import TodoApp from "./components/TodoApp";
 
 function App() {
   // let total = 10;
