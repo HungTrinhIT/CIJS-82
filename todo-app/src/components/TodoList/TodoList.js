@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./TodoList.css";
 const TodoList = (props) => {
   const { todos } = props;
   return (
@@ -10,7 +10,9 @@ const TodoList = (props) => {
             <div className="d-flex align-items-center gap-2" key={todoItem.id}>
               <input type="checkbox" checked={todoItem.isCompleted} />
               <p className="mb-0 me-4">{todoItem.title}</p>
-              <button className="rounded-circle btn btn-danger">X</button>
+              <button className="rounded-circle btn btn-danger delete-button">
+                X
+              </button>
             </div>
           );
         })}

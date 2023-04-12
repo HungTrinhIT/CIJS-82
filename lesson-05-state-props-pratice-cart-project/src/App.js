@@ -19,7 +19,13 @@ function App() {
   };
 
   // Thêm sản phẩm vào giỏ hàng
-  const onAddProductToCart = () => {};
+  const onAddProductToCart = () => {
+    console.log("New event is coming...");
+  };
+
+  const onUpdateCart = () => {};
+
+  const onDeleteCart = () => {};
   return (
     <div className="App">
       <Header cart={cart} />
@@ -29,7 +35,7 @@ function App() {
             <AddProductForm onAddNewProduct={onAddNewProductToProductList} />
           </div>
           <div className="col-12 col-md-8">
-            <ProductList products={products} />
+            <ProductList products={products} onAddToCart={onAddProductToCart} />
           </div>
         </div>
       </main>

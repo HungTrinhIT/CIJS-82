@@ -1,5 +1,5 @@
 const ProductList = (props) => {
-  const { products } = props;
+  const { products, onAddToCart } = props;
 
   return (
     <div>
@@ -14,9 +14,9 @@ const ProductList = (props) => {
               <img src={productImage} className="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">{productName}</h5>
-                <a href="#" className="btn btn-primary">
+                <button onClick={onAddToCart} className="btn btn-primary">
                   Add to cart
-                </a>
+                </button>
               </div>
             </div>
           );
