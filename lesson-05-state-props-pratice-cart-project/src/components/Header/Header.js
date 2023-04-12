@@ -35,7 +35,11 @@ const Header = (props) => {
                 </a>
               </li>
             </ul>
-            <div className="d-flex align-items-center gap-3">
+            <div
+              className="d-flex align-items-center gap-3 pointer-event"
+              data-bs-toggle="modal"
+              data-bs-target="#cart"
+            >
               <FaCartPlus />
               <span>({cartAmount})</span>
             </div>

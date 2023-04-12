@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import AddProductForm from "./components/AddProductForm/AddProductForm";
 import Header from "./components/Header/Header";
 import ProductList from "./components/ProductList/ProductList";
+import CartModal from "./components/CartModal/CartModal";
 
 const initialProducts = [
   {
@@ -56,24 +57,43 @@ function App() {
     // console.log("Add new product:", productId);
 
     // Step 1: Tìm xem sản phẩm có id là productId nằm ở vị trí nào trong products
-    const existingProduct = products.find((product) => {
-      return product.id === productId;
-    });
+    const existingProduct = products.find(
+      (product) => product.id === productId
+    );
+
+    // Step 2: Tìm kiếm xem sản phẩm đã tồn tại trong giỏ hàng hay chưa
+    // Giống như bài toán tìm kiếm 1 phần từ đã tồn tại trong 1 mảng một chiều
+    // findIndex() => Nếu tìm thấy sẽ trả về chỉ số index tồn tại
+    //             => Nếu không tìm thấy => trả về -1
+    const indexOfAddingProductInCart = cart.findIndex(
+      (cartItem) => cartItem.id === productId
+    );
 
     // Step 2:
-    // 2.1 Đã tồn tại trong giỏ hàng => cập nhật quantity
-    // 2.2 Nếu chưa tồn tại thì mới với quantity = 1
-    const newCartItem = {
-      ...existingProduct,
-      quantity: 1,
-    };
+    // 2.1 Nếu chưa tồn tại thì mới với quantity = 1
+    if (indexOfAddingProductInCart === -1) {
+      const newCartItem = {
+        ...existingProduct,
+        quantity: 1,
+      };
 
-    setCart([...cart, newCartItem]);
+      setCart([...cart, newCartItem]);
+    } else {
+      // 2.2 Đã tồn tại trong giỏ hàng => cập nhật quantity
+      const clonedCart = [...cart];
+      clonedCart[indexOfAddingProductInCart].quantity += 1;
+      setCart(clonedCart);
+    }
   };
 
-  const onUpdateCart = () => {};
+  // Hàm xử lý tăng số lượng cartItem
+  const onInCreaseCartQuantity = (productId) => {};
 
-  const onDeleteCart = () => {};
+  // Hàm xử lý tăng số lượng cartItem
+  const onDecreaseCartQuantity = (productId) => {};
+
+  // Xoá sản phẩm trong giỏ hàng
+  const onDeleteCartItem = (productId) => {};
   return (
     <div className="App">
       <Header cart={cart} />
@@ -87,6 +107,7 @@ function App() {
           </div>
         </div>
       </main>
+      <CartModal cart={cart} />
     </div>
   );
 }
