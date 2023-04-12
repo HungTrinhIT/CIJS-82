@@ -1,7 +1,9 @@
 import React from "react";
 import { FaCartPlus } from "react-icons/fa";
 
-const Header = () => {
+const Header = (props) => {
+  const { cart } = props;
+  const cartAmount = cart.length;
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,7 +37,7 @@ const Header = () => {
             </ul>
             <div className="d-flex align-items-center gap-3">
               <FaCartPlus />
-              <span>(0)</span>
+              <span>({cartAmount})</span>
             </div>
           </div>
         </div>

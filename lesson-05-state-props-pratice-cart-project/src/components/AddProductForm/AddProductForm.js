@@ -20,6 +20,7 @@ const AddProductForm = (props) => {
   };
 
   const onProductSubmit = (event) => {
+    console.log("Submit button trigger");
     // Ngăn chặn những action mặc định của HTML form
     // Không cho trang reload
     event.preventDefault();
@@ -45,7 +46,7 @@ const AddProductForm = (props) => {
 
       <form className="mt-3" onSubmit={onProductSubmit}>
         <div className="mb-3">
-          <label htmlFor="productName" class="form-label">
+          <label htmlFor="productName" className="form-label">
             Product name
           </label>
           <input
@@ -58,7 +59,7 @@ const AddProductForm = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="productImage" class="form-label">
+          <label htmlFor="productImage" className="form-label">
             Product image (url)
           </label>
           <input
@@ -71,7 +72,7 @@ const AddProductForm = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="productPrice" class="form-label">
+          <label htmlFor="productPrice" className="form-label">
             Price ($)
           </label>
           <input
@@ -99,3 +100,4 @@ export default AddProductForm;
 // Read (Render data to UI)
 // Update
 // Delete
+// ref (Buổi số 8)
