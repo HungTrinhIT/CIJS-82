@@ -89,11 +89,20 @@ function App() {
   // Hàm xử lý tăng số lượng cartItem
   const onInCreaseCartQuantity = (productId) => {};
 
-  // Hàm xử lý tăng số lượng cartItem
+  // Hàm xử lý giảm số lượng cartItem
   const onDecreaseCartQuantity = (productId) => {};
 
   // Xoá sản phẩm trong giỏ hàng
-  const onDeleteCartItem = (productId) => {};
+  const onDeleteCartItem = (productId) => {
+    console.log("Delete item:", productId);
+    // productId => Xoá 1 phần tử ở trong mảng 1 chiều
+    const newCartAfterRemovedItem = cart.filter(
+      (cartItem) => cartItem.id !== productId
+    );
+
+    // Cập nhật state cho cart
+    setCart(newCartAfterRemovedItem);
+  };
   return (
     <div className="App">
       <Header cart={cart} />
@@ -107,7 +116,7 @@ function App() {
           </div>
         </div>
       </main>
-      <CartModal cart={cart} />
+      <CartModal cart={cart} onDeleteCartItem={onDeleteCartItem} />
     </div>
   );
 }

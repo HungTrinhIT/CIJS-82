@@ -1,6 +1,6 @@
 import { FaTrashAlt } from "react-icons/fa";
 const CartModal = (props) => {
-  const { cart } = props;
+  const { cart, onDeleteCartItem } = props;
 
   // Logic tính tổng tiền của đơn hàng: reduce
   let totalPrice = 0;
@@ -45,8 +45,13 @@ const CartModal = (props) => {
               </thead>
               <tbody>
                 {cart.map((cartItem, index) => {
-                  const { productImage, productName, quantity, productPrice } =
-                    cartItem;
+                  const {
+                    productImage,
+                    productName,
+                    quantity,
+                    productPrice,
+                    id,
+                  } = cartItem;
                   return (
                     <tr>
                       <th scope="row">{index}</th>
@@ -66,7 +71,10 @@ const CartModal = (props) => {
                       </td>
                       <td>{quantity * productPrice}</td>
                       <td>
-                        <button className="btn btn-danger">
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => onDeleteCartItem(id)}
+                        >
                           <FaTrashAlt />
                         </button>
                       </td>
