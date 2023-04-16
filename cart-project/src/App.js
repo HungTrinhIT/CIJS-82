@@ -1,12 +1,10 @@
 import { useState } from "react";
-
+import "./App.css";
 import { v4 as uuidv4 } from "uuid";
 import AddProductForm from "./components/AddProductForm/AddProductForm";
 import Header from "./components/Header/Header";
 import ProductList from "./components/ProductList/ProductList";
 import CartModal from "./components/CartModal/CartModal";
-
-import "./App.css";
 
 const initialProducts = [
   {
@@ -67,7 +65,7 @@ const initialProducts = [
   },
 ];
 
-const App = () => {
+function App() {
   // State chứa danh sách những sản phẩm
   const [products, setProducts] = useState(initialProducts);
 
@@ -145,18 +143,16 @@ const App = () => {
       <Header cart={cart} />
       <main className="container py-3">
         <div className="row">
-          <div className="col-12 col-md-3">
-            <AddProductForm onAddNewProduct={onAddNewProductToProductList} />
-          </div>
-          <div className="col-12 col-md-8">
-            <ProductList products={products} onAddToCart={onAddProductToCart} />
-          </div>
+          <ProductList products={products} onAddToCart={onAddProductToCart} />
+        </div>
+        <div className="row mt-4">
+          <AddProductForm onAddNewProduct={onAddNewProductToProductList} />
         </div>
       </main>
       <CartModal cart={cart} onDeleteCartItem={onDeleteCartItem} />
     </div>
   );
-};
+}
 
 export default App;
 
