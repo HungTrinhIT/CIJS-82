@@ -7,6 +7,7 @@ import ProductList from "./components/ProductList/ProductList";
 import CartModal from "./components/CartModal/CartModal";
 import { initialProducts } from "./utils/mockData";
 
+
 function App() {
   // States
   const [products, setProducts] = useState(initialProducts);
