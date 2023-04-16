@@ -3,49 +3,36 @@ import ProductItem from "../ProductItem/ProductItem";
 const ProductList = (props) => {
   const { products, onAddToCart } = props;
 
+  const isValidProducts = products && Array.isArray(products);
+
+  // Conditional rendering
+  const listProducts = isValidProducts ? (
+    products.map((product) => {
+      const { productImage, productName, id, productPrice } = product;
+      return (
+        <ProductItem
+          productImage={productImage}
+          productName={productName}
+          onAddToCart={onAddToCart}
+          productId={id}
+          productPrice={productPrice}
+          key={id}
+        />
+      );
+    })
+  ) : (
+    <div>No products</div>
+  );
+
   return (
     <div>
-      <h6>Product List</h6>
-      {/* JSX, array => JSX */}
-      {/* {[<p>hello</p>, <span>Hi</span>]} */}
-      <div className="row">
-        {/* {productElements} */}
-        {products.map((product) => {
-          const { productImage, productName, id, productPrice } = product;
-          return (
-            <ProductItem
-              productImage={productImage}
-              productName={productName}
-              onAddToCart={onAddToCart}
-              productId={id}
-              productPrice={productPrice}
-              key={id}
-            />
-          );
-        })}
-      </div>
+      <h6>{products.length} products</h6>
+      <div className="row">{listProducts}</div>
     </div>
   );
 };
 
 export default ProductList;
 
-// Cách 2
-// let productElements = [];
-
-// for (let product of products) {
-//   const { productImage, productName } = product;
-//   const newProductElement = (
-//     <div className="card col-12 col-md-6 col-lg-4 ">
-//       <img src={productImage} className="card-img-top" alt="..." />
-//       <div className="card-body">
-//         <h5 className="card-title">{productName}</h5>
-//         <button onClick={onAddToCart} className="btn btn-primary">
-//           Add to cart
-//         </button>
-//       </div>
-//     </div>
-//   );
-
-//   productElements.push(newProductElement);
-// }
+// Testing, Unit Test
+// Typescript: Javascript + type checking

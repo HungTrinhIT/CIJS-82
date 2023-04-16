@@ -1,14 +1,60 @@
 import { FaTrashAlt } from "react-icons/fa";
 const CartModal = (props) => {
-  const { cart, onDeleteCartItem } = props;
+  const { cart, onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem } =
+    props;
 
-  // Logic tính tổng tiền của đơn hàng: reduce
-  let totalPrice = 0;
-  for (let i = 0; i < cart.length; i++) {
-    const cartItem = cart[i];
-    totalPrice += cartItem.productPrice * cartItem.quantity;
-  }
+  const getTotalPrice = (cart) => {
+    let totalPrice = 0;
+    for (let i = 0; i < cart.length; i++) {
+      const cartItem = cart[i];
+      totalPrice += cartItem.productPrice * cartItem.quantity;
+    }
 
+    return totalPrice;
+  };
+  const totalPrice = getTotalPrice(cart);
+  const cartBodyElements = cart.map((cartItem, index) => {
+    const { productImage, productName, quantity, productPrice, id } = cartItem;
+    // const isDisabledDecreaseButton = quantity === 1;
+
+    return (
+      <tr key={id}>
+        <th scope="row">{index}</th>
+        <td>{productName}</td>
+        <td>
+          <img src={productImage} alt="Cart image" height={"50px"} />
+        </td>
+        <td>{productPrice}</td>
+        <td>
+          <button
+            className="btn btn-primary"
+            onClick={() => onDecreaseQuantity(id)}
+            // disabled={isDisabledDecreaseButton}
+          >
+            -
+          </button>
+          <span className="mx-2">{quantity}</span>
+          <button
+            className="btn btn-primary"
+            onClick={() => onIncreaseQuantity(id)}
+          >
+            +
+          </button>
+        </td>
+        <td>{quantity * productPrice}</td>
+        <td>
+          <button
+            className="btn btn-danger"
+            onClick={() => onDeleteCartItem(id)}
+          >
+            <FaTrashAlt />
+          </button>
+        </td>
+      </tr>
+    );
+  });
+
+  // JSX: HTML => UI
   return (
     <div
       className="modal fade "
@@ -44,43 +90,7 @@ const CartModal = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {cart.map((cartItem, index) => {
-                  const {
-                    productImage,
-                    productName,
-                    quantity,
-                    productPrice,
-                    id,
-                  } = cartItem;
-                  return (
-                    <tr>
-                      <th scope="row">{index}</th>
-                      <td>{productName}</td>
-                      <td>
-                        <img
-                          src={productImage}
-                          alt="Cart image"
-                          height={"50px"}
-                        />
-                      </td>
-                      <td>{productPrice}</td>
-                      <td>
-                        <button className="btn btn-primary">-</button>
-                        <span className="mx-2">{quantity}</span>
-                        <button className="btn btn-primary">+</button>
-                      </td>
-                      <td>{quantity * productPrice}</td>
-                      <td>
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => onDeleteCartItem(id)}
-                        >
-                          <FaTrashAlt />
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                {cartBodyElements}
                 <tr>
                   <td>Total price</td>
                   <td></td>
@@ -114,3 +124,4 @@ const CartModal = (props) => {
 export default CartModal;
 
 // Modal , Popup
+// Refactor code
