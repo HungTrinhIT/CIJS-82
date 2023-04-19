@@ -1,49 +1,28 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-
-const Body = () => {
-  console.log("Body component [RENDER]");
-
-  // useEffect cho sự kiện scroll
-  // Performance: memory leak
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = document.documentElement.scrollTop;
-      console.log("Scrolling position: ", position);
-    };
-    document.addEventListener("scroll", handleScroll);
-
-    // Clean up function: DỌN DẸP tất cả những cái đăng ký
-    // MUST REMEMBER: dọn dẹp tàn dư trước khi đi :))
-    return () => {
-      console.log("Body component [CLEAN UP] function runs");
-      document.removeEventListener("scroll", handleScroll);
-    };
-  });
-  return (
-    <div
-      style={{
-        border: "1px solid red",
-        background: "#ececec",
-      }}
-    >
-      Body component
-    </div>
-  );
-};
+import Body from "./components/Body";
+import Count from "./components/Count";
 
 function App() {
   const [count, setCount] = useState(0);
   const [visible, setVisible] = useState(true);
 
-  console.log("App component [RENDER]");
+  console.log("[RENDER]: App component ");
 
   // UseEffect cho title
   // - Nó sẽ được run sau mỗi lần render (state thay đổi)
   useEffect(() => {
-    console.log("UseEffect runs");
+    console.log("[UPDATING] App component -> UseEffect runs");
     document.title = `You clicked ${count} times`;
-  });
+  }, [count]);
+
+  // UseEffect dùng để fetching data về nhữg bộ phim
+  // Khi vừa vào trang web
+  // Truyền vào một empty dependencies
+  // Giúp mình gọi useEffect chỉ chạy 1 lần duy nhất sau lần render đầu tiên
+  useEffect(() => {
+    console.log("Fetching film data....");
+  }, []);
 
   const onIncreaseCount = () => {
     setCount(count + 1);
@@ -58,12 +37,8 @@ function App() {
       }}
     >
       <h1>Hello useEffects</h1>
-      <p>Count: {count}</p>
-      <div className="pagination">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-      </div>
+
+      <Count count={count} />
       <button onClick={onIncreaseCount}>Click me</button>
       <button onClick={onToggleBodyComponent}>Toggle </button>
       {visible && <Body />}
@@ -104,4 +79,5 @@ export default App;
 
 
   Lifecycle => UseEffect (****)
+  Array dependencies
  */
