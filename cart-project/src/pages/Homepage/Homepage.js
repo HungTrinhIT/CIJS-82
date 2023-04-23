@@ -8,7 +8,7 @@ import CartModal from "./components/CartModal/CartModal";
 import { initialProducts } from "./utils/mockData";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+function Homepage() {
   // States
   const [products, setProducts] = useState(initialProducts);
   const [cart, setCart] = useState([]);
@@ -87,43 +87,15 @@ function App() {
     setCart(newCartAfterRemovedItem);
   };
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header cart={cart} />
-        <Routes>
-          <Route to="/"/>
-        </Routes>
-        <main className="container py-3">
-          <div className="row">
-            <ProductList products={products} onAddToCart={onAddProductToCart} />
-          </div>
-          <div className="row mt-4">
-            <AddProductForm onAddNewProduct={onAddNewProductToProductList} />
-          </div>
-        </main>
-        <CartModal
-          cart={cart}
-          onDeleteCartItem={onDeleteCartItem}
-          onIncreaseQuantity={onIncreaseCartQuantity}
-          onDecreaseQuantity={onDecreaseCartQuantity}
-        />
+    <main className="container py-3">
+      <div className="row">
+        <ProductList products={products} onAddToCart={onAddProductToCart} />
       </div>
-    </BrowserRouter>
+      <div className="row mt-4">
+        <AddProductForm onAddNewProduct={onAddNewProductToProductList} />
+      </div>
+    </main>
   );
 }
 
-export default App;
-
-/*
-  - Tách function
-  - Tách class: OOP
-    + Liên minh huyền thoại
-    + A, B, C, D
-    => Tưởng nền tảng 
-    => thuộc tính: chiều cao, cân nượng, lượng máu, ...
-    => hành động: chạy(), nhảy(), tốc biến()
-  
-  - Module
-  Services > module > class > function (reusable code)
-  Functional Programming
-*/
+export default Homepage;
