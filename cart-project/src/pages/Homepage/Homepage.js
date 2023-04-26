@@ -1,10 +1,10 @@
 import ProductList from "../../components/ProductList/ProductList";
 
-const Homepage = ({ products, onAddProductToCart }) => {
+const Homepage = ({ onAddProductToCart }) => {
   return (
     <div>
       <h1>Homepage</h1>
-      <ProductList products={products} onAddToCart={onAddProductToCart} />
+      <ProductList onAddToCart={onAddProductToCart} />
     </div>
   );
 };

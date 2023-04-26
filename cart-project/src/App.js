@@ -12,11 +12,15 @@ import Admin from "./pages/Admin/Admin";
 import Cart from "./pages/Cart/Cart";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import NotFound from "./pages/NotFound/NotFound";
+import AppContext from "./contexts/AppContext";
+import { Footer } from "./components/Footer/Footer";
 
 const App = () => {
   // States
   const [products, setProducts] = useState(initialProducts);
   const [cart, setCart] = useState([]);
+  const [lang, setLang] = useState("eng"); //eng / vi
+  const [theme, setTheme] = useState("light"); // dark/light
 
   // Functions
   const onAddNewProductToProductList = (product) => {
@@ -92,44 +96,46 @@ const App = () => {
     setCart(newCartAfterRemovedItem);
   };
   return (
-    <div className="App">
-      <Header cart={cart} />
-      <main className="container py-3">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Homepage
-                products={products}
-                onAddProductToCart={onAddProductToCart}
-              />
-            }
-          />
-          <Route path="/products/:productId" element={<ProductDetail />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route
-            path="/admin"
-            element={
-              <Admin
-                onAddNewProductToProductList={onAddNewProductToProductList}
-              />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                cart={cart}
-                onDeleteCartItem={onDeleteCartItem}
-                onIncreaseQuantity={onIncreaseQuantity}
-                onDecreaseQuantity={onDecreaseQuantity}
-              />
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </div>
+    <AppContext.Provider
+      value={{
+        products: products,
+      }}
+    >
+      <div className="App">
+        <Header cart={cart} />
+        <main className="container py-3">
+          <Routes>
+            <Route
+              path="/"
+              // element={<Homepage onAddProductToCart={onAddProductToCart} />}
+              element={<Homepage onAddProductToCart={onAddProductToCart} />}
+            />
+            <Route path="/products/:productId" element={<ProductDetail />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route
+              path="/admin"
+              element={
+                <Admin
+                  onAddNewProductToProductList={onAddNewProductToProductList}
+                />
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  cart={cart}
+                  onDeleteCartItem={onDeleteCartItem}
+                  onIncreaseQuantity={onIncreaseQuantity}
+                  onDecreaseQuantity={onDecreaseQuantity}
+                />
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </div>
+    </AppContext.Provider>
   );
 };
 
@@ -167,4 +173,6 @@ export default App;
         CartTable
           CartTableItem
 
+   Global state
+   + Flux: Redux, Recoil, Mobx  => Quản lý global state 
 */

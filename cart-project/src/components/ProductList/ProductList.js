@@ -1,7 +1,10 @@
+import AppContext from "../../contexts/AppContext";
 import ProductItem from "../ProductItem/ProductItem";
+import { useContext } from "react";
 
 const ProductList = (props) => {
-  const { products, onAddToCart } = props;
+  const { onAddToCart } = props;
+  const { products = [] } = useContext(AppContext);
 
   const isValidProducts = products && Array.isArray(products);
 
