@@ -16,7 +16,6 @@ const ProductList = (props) => {
         <ProductItem
           productImage={productImage}
           productName={productName}
-          onAddToCart={onAddToCart}
           productId={id}
           productPrice={productPrice}
           key={id}

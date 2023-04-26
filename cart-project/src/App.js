@@ -99,27 +99,18 @@ const App = () => {
     <AppContext.Provider
       value={{
         products: products,
+        onAddToCart: onAddProductToCart,
+        onAddProductToProductList: onAddNewProductToProductList,
       }}
     >
       <div className="App">
         <Header cart={cart} />
         <main className="container py-3">
           <Routes>
-            <Route
-              path="/"
-              // element={<Homepage onAddProductToCart={onAddProductToCart} />}
-              element={<Homepage onAddProductToCart={onAddProductToCart} />}
-            />
+            <Route path="/" element={<Homepage />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             <Route path="/about-us" element={<AboutUs />} />
-            <Route
-              path="/admin"
-              element={
-                <Admin
-                  onAddNewProductToProductList={onAddNewProductToProductList}
-                />
-              }
-            />
+            <Route path="/admin" element={<Admin />} />
             <Route
               path="/cart"
               element={
@@ -133,6 +124,7 @@ const App = () => {
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </main>
       </div>
     </AppContext.Provider>
@@ -175,4 +167,8 @@ export default App;
 
    Global state
    + Flux: Redux, Recoil, Mobx  => Quản lý global state 
+
+   + Todolist
+   + Ecommerce app
+   + Expense App
 */

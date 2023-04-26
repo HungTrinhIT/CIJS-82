@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "../../contexts/AppContext";
 
 // Mảng Product
 // State => Lưu thông tin product list
@@ -8,6 +9,7 @@ const AddProductForm = (props) => {
     productImage: "",
     productPrice: "",
   });
+  const { onAddProductToProductList } = useContext(AppContext);
 
   const onProductChange = (event) => {
     const { value, name } = event.target;
@@ -30,7 +32,7 @@ const AddProductForm = (props) => {
     // const newProductList = [...productList, productValues];
     // setProductList(newProductList);
 
-    props.onAddNewProduct(productValues);
+    onAddProductToProductList(productValues);
 
     // Clear form đi để thêm sản phẩm tiêp theo
     setProductValues({

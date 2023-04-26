@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./Product.css";
 import { FaCartPlus } from "react-icons/fa";
+import { useContext } from "react";
+import AppContext from "../../contexts/AppContext";
 const ProductItem = (props) => {
-  const { productImage, productName, onAddToCart, productId, productPrice } =
-    props;
+  const { productImage, productName, productId, productPrice } = props;
+  const { onAddToCart } = useContext(AppContext);
   const navigate = useNavigate();
 
   const onNavigateToProductDetail = () => {
