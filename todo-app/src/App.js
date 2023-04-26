@@ -62,7 +62,7 @@ function App() {
   };
 
   return (
-    <div className="flex items-center justify-center w-screen h-screen transition-all ">
+    <div className="flex items-center justify-center w-screen h-screen transition-all">
       <div className="flex flex-grow items-center justify-center h-full text-gray-600 bg-gray-100">
         {/* Component Start */}
         <div className="max-w-full  my-[40px] px-7 pt-10 py-10 bg-white rounded-lg shadow-lg w-2/3 h-screen">
