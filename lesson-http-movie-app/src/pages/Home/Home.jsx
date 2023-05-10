@@ -100,4 +100,28 @@ export default Home;
         Mounting (khởi tạo)
         Updating (Cập nhật)
         Un-Mounting (Gỡ bỏ khỏi DOM Tree)
+
+
+    reactjs
+        + component là gì
+        + props là gì
+        + jsx là gì
+        + cách mà truyền nhận dữ liệu giữa các component thông qua props
+        + state => quản lý trạng thái của 1 component 
+        + event handling: onClick, onFocus
+        + Form Handling: onChange, onSubmit
+        + List: cách mình render 1 cái list
+        + Conditional rendering
+
+    3 projects:    
+        Todolist
+        Cart Project
+        Expense App
+
+    Bài test cá nhân
+     1. Problem solving: JS 
+     2. Problem solving: JS 
+     3. Requirement , Design, API
+        + Code 1 ứng dụng
+        + Form, state, props, list, event handling,...
 */
