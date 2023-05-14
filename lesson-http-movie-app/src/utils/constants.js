@@ -1,5 +1,3 @@
-import useFetch from "../hooks/useFetch";
-
 export const PREFIX_IMAGE = "https://image.tmdb.org/t/p/original";
 
 export const BASE_API_URL = "https://api.themoviedb.org/3";
