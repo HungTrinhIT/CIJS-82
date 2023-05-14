@@ -1,74 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MovieList from "../../components/MovieList/MovieList";
+import useFetch from "../../hooks/useFetch";
+import { API_MOVIES_URL } from "../../utils/constants";
+import Loading from "../../components/Loading/Loading";
 
 // Functional Component (Stateless component)
 // Class-based component (Statefull component)
-// useFetch
 
 const Home = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [topRatedMovies, setTopRatedMovies] = useState([]);
-  const [upComingMovies, setupComingMovies] = useState([]);
+  const { data: popularMovies, isLoading: popularMovieLoading } = useFetch(
+    API_MOVIES_URL.popular
+  );
+  const { data: upComingMovies, isLoading: upcomingMovieLoading } = useFetch(
+    API_MOVIES_URL.upcoming
+  );
+  const { data: topRatedMovies, isLoading: topRatedMovieLoading } = useFetch(
+    API_MOVIES_URL.topRated
+  );
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  //   UseEffect sẽ được gọi sau lần render đầu tiên
-  useEffect(() => {
-    fetchAllPopularMovie();
-    fetchAllTopRatedMovie();
-    fetchAllUpcomingMovie();
-  }, []);
-
-  const fetchAllPopularMovie = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(
-        "https://api.themoviedb.org/3/movie/popular?api_key=f5604f45a67acfff1cd1e7f5065da619"
-      );
-      const data = await response.json();
-      setPopularMovies(data.results);
-      setIsLoading(false);
-    } catch (error) {
-      console.log("somethings went wrong:", error);
-    }
-  };
-  const fetchAllTopRatedMovie = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=f5604f45a67acfff1cd1e7f5065da619"
-      );
-      const data = await response.json();
-      setTopRatedMovies(data.results);
-      setIsLoading(false);
-    } catch (error) {
-      console.log("somethings went wrong:", error);
-    }
-  };
-  const fetchAllUpcomingMovie = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(
-        "https://api.themoviedb.org/3/movie/upcoming?api_key=f5604f45a67acfff1cd1e7f5065da619"
-      );
-      const data = await response.json();
-      setupComingMovies(data.results);
-      setIsLoading(false);
-    } catch (error) {
-      console.log("somethings went wrong:", error);
-    }
-  };
+  const isLoading =
+    popularMovieLoading || upcomingMovieLoading || topRatedMovieLoading;
 
   return (
     <div>
-      Homepage , hello mindx
-      {isLoading === true ? (
-        <div>Loading popular movie... </div>
+      {isLoading ? (
+        <Loading />
       ) : (
         <main>
-          <MovieList listTitle="Popular Movie" movieData={popularMovies} />
-          <MovieList listTitle="Top Rated Movie" movieData={topRatedMovies} />
-          <MovieList listTitle="Up Coming Movie" movieData={upComingMovies} />
+          <MovieList
+            listTitle="Popular Movie"
+            movieData={popularMovies.results}
+          />
+          <MovieList
+            listTitle="Top Rated Movie"
+            movieData={topRatedMovies.results}
+          />
+          <MovieList
+            listTitle="Up Coming Movie"
+            movieData={upComingMovies.results}
+          />
         </main>
       )}
     </div>
@@ -124,4 +94,15 @@ export default Home;
      3. Requirement , Design, API
         + Code 1 ứng dụng
         + Form, state, props, list, event handling,...
+
+  Best practices khi viết React Component
+  ReactJS => component-based
+
+  1. UI => JSX (Javascript XML) (HTML + syntax của JSX)
+  2. Xử lý logic: event-handling, mapping data
+  3. State and Hooks
+
+  => Muốn tái sử dụng UI => tách thành component
+  => Muốn tái sử dụng logic của component => viết những logic đó trong 1 customHooks
+
 */
