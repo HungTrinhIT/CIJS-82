@@ -21,6 +21,11 @@ const Home = () => {
   const isLoading =
     popularMovieLoading || upcomingMovieLoading || topRatedMovieLoading;
 
+  const VOUCHER_CODES = {
+    ABC: 0.1,
+    sdasd: 0.2,
+  };
+
   return (
     <div>
       {isLoading ? (
